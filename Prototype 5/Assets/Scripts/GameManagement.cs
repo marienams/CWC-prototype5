@@ -14,12 +14,13 @@ public class GameManagement : MonoBehaviour
     private float spawnRate = 1.0f;
     public bool isGameActive;
     public Button restartButton;
+
+    public GameObject titleScreen;
+
     // Start is called before the first frame update
     void Start()
     {
-        isGameActive = true;
-        StartCoroutine(SpawnRate());
-        score = 0;
+        
 
     }
 
@@ -38,6 +39,17 @@ public class GameManagement : MonoBehaviour
 
             //UpdateScore(5);
         }
+    }
+
+    public void StartGame(int difficulty)
+    {
+        spawnRate /= difficulty;
+        isGameActive = true;
+        StartCoroutine(SpawnRate());
+        score = 0;
+        titleScreen.gameObject.SetActive(false);
+
+        
     }
 
     public void UpdateScore(int scoreToAdd)
